@@ -10,13 +10,13 @@ export default class CommentsPopUp {
 
   display(id) {
     if (id) {
+      this.popUp.style.display = 'flex';
+      this.popUp.innerHTML = 'Loading info...';
       this.getProductInfo(id).then((productInfo) => {
         if (productInfo.error === false) {
           const {
             title, image, category, price, description,
           } = productInfo.data;
-          this.popUp.style.display = 'flex';
-          this.popUp.innerHTML = 'Loading...';
           this.popUp.innerHTML = `
             <img src="${closeIcon}" title="close" class="close-comment-popup">
             <img src="${image}" class="comment-cover">
@@ -85,7 +85,7 @@ export default class CommentsPopUp {
   }
 
   enable() {
-    const commentsBtns = document.querySelectorAll('.btn-comments');
+    const commentsBtns = document.querySelectorAll('.btn-comment');
     if (commentsBtns) {
       commentsBtns.forEach((comment) => {
         comment.addEventListener('click', () => {
