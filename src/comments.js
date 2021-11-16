@@ -7,7 +7,14 @@ export default class CommentsPopUp {
     // for testing purposes
     this.popUp = document.createElement('section');
     this.popUp.setAttribute('id', 'commentsPopUp');
-    document.querySelector('body').innerHTML += '<span class="btn-comments" data="123">comments</span>';
+    document.querySelector('body').innerHTML += '<span class="btn-comments" id="1">comments</span>';
+    const commentsBtns = document.querySelectorAll('.btn-comments');
+    commentsBtns.forEach((comment) => {
+      comment.addEventListener('click', () => {
+        const id = comment.getAttribute('id');
+        this.display(id);
+      })
+    });
   }
 
   display(id) {
