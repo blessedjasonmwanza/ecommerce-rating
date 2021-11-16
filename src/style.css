@@ -1,3 +1,11 @@
 body {
   background: #fff;
+  margin: 0;
+}
+
+footer {
+  width: calc(100% - 24px);
+  border: 2px solid #000;
+  padding: 30px 10px;
+  margin: 0 auto;
 }
