@@ -73,7 +73,6 @@ const display = async () => {
     });
     comments.enable();
   });
-  
 };
 
 export default display;
