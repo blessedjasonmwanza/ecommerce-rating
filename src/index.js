@@ -1,3 +1,5 @@
 import './style.css';
 import CommentsPopUp from './comments';
-new CommentsPopUp();
+
+const comments = new CommentsPopUp();
+comments.enable();

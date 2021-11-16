@@ -4,24 +4,17 @@ import Config from './config';
 const config = new Config();
 export default class CommentsPopUp {
   constructor() {
-    // for testing purposes
     this.popUp = document.createElement('section');
     this.popUp.setAttribute('id', 'commentsPopUp');
-    document.querySelector('body').innerHTML += '<span class="btn-comments" id="1">comments</span>';
-    const commentsBtns = document.querySelectorAll('.btn-comments');
-    commentsBtns.forEach((comment) => {
-      comment.addEventListener('click', () => {
-        const id = comment.getAttribute('id');
-        this.display(id);
-      })
-    });
   }
 
   display(id) {
     if (id) {
       this.getProductInfo(id).then((productInfo) => {
         if (productInfo.error === false) {
-          const { title, image, category, price, description } = productInfo.data;
+          const {
+            title, image, category, price, description,
+          } = productInfo.data;
           this.popUp.style.display = 'flex';
           this.popUp.innerHTML = 'Loading...';
           this.popUp.innerHTML = `
@@ -89,5 +82,17 @@ export default class CommentsPopUp {
       response = { error: true, info: 'Some parameters are missing, or are invalid' };
     }
     return response;
+  }
+
+  enable() {
+    const commentsBtns = document.querySelectorAll('.btn-comments');
+    if (commentsBtns) {
+      commentsBtns.forEach((comment) => {
+        comment.addEventListener('click', () => {
+          const id = comment.getAttribute('id');
+          this.display(id);
+        });
+      });
+    }
   }
 }
