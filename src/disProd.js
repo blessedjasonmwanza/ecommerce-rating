@@ -1,3 +1,5 @@
+import getProducts from './getProducts';
+
 const createElement = (el, className, source, title, id) => {
   const elm = document.createElement(`${el}`);
   elm.className = className;
@@ -59,10 +61,10 @@ const templateProduct = (source, title, id) => {
   return productCard;
 };
 
-const data = JSON.parse(localStorage.getItem('products'));
 const list = document.querySelector('.main');
 
-const display = () => {
+const display = async () => {
+  const data = await getProducts();
   data.forEach((el) => {
     list.appendChild(templateProduct(el.image, el.title, el.id));
   });
