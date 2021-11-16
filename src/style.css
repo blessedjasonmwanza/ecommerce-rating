@@ -1,6 +1,84 @@
-body {
-  background: #fff;
+*,
+*::after,
+*::before {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.cont-navbar {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+
+.cont-link {
+  margin-left: 2rem;
+}
+
+.cont-link-lists {
+  display: flex;
+  list-style: none;
+}
+
+.cont-link-lists > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.link:active,
+.link:hover {
+  border-bottom: 2px solid currentColor;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+}
+
+.cont-img {
+  width: 100%;
+  text-align: center;
+}
+
+.img-product {
+  height: 10rem;
+  margin: 0 auto;
+}
+
+.cont-info-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.title-product {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-wrapper > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 #commentsPopUp {
@@ -62,4 +140,13 @@ footer {
 
 .d-flex {
   display: flex;
+}
+
+.btn-comment,
+.btn-reserve {
+  border: none;
+  background-color: steelblue;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
 }
