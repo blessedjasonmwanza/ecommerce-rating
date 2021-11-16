@@ -1,6 +1,45 @@
-body {
-  background: #fff;
+*,
+*::after,
+*::before {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.cont-navbar {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+
+.cont-link {
+  margin-left: 2rem;
+}
+
+.cont-link-lists {
+  display: flex;
+  list-style: none;
+}
+
+.cont-link-lists > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.link:active,
+.link:hover {
+  border-bottom: 2px solid currentColor;
 }
 
 footer {
