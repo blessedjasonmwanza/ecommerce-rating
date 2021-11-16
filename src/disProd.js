@@ -1,4 +1,7 @@
 import getProducts from './getProducts';
+import CommentsPopUp from './comments';
+
+const comments = new CommentsPopUp();
 
 const createElement = (el, className, source, title, id) => {
   const elm = document.createElement(`${el}`);
@@ -64,10 +67,13 @@ const templateProduct = (source, title, id) => {
 const list = document.querySelector('.main');
 
 const display = async () => {
-  const data = await getProducts();
-  data.forEach((el) => {
-    list.appendChild(templateProduct(el.image, el.title, el.id));
+  await getProducts().then((res) => {
+    res.forEach((el) => {
+      list.appendChild(templateProduct(el.image, el.title, el.id));
+    });
+    comments.enable();
   });
+  
 };
 
 export default display;

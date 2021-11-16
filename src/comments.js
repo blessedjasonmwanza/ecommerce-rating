@@ -10,6 +10,7 @@ export default class CommentsPopUp {
 
   display(id) {
     if (id) {
+      document.querySelector('body').style.overflow = 'hidden';
       this.popUp.style.display = 'flex';
       this.popUp.innerHTML = 'Loading info...';
       this.getProductInfo(id).then((productInfo) => {
@@ -46,6 +47,7 @@ export default class CommentsPopUp {
   hide() {
     this.popUp.style.display = 'none';
     this.popUp.innerHTML = '';
+    document.querySelector('body').style.overflow = 'auto';
   }
 
   getProductInfo = async (id) => {
@@ -89,7 +91,7 @@ export default class CommentsPopUp {
     if (commentsBtns) {
       commentsBtns.forEach((comment) => {
         comment.addEventListener('click', () => {
-          const id = comment.getAttribute('id');
+          const id = comment.getAttribute('data');
           this.display(id);
         });
       });
