@@ -131,6 +131,32 @@ body {
   color: #47525d;
 }
 
+.comments-form {
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.comments-form input,
+.comments-form button {
+  width: 300px;
+  border: 2px solid #000;
+  height: 35px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.comments-form button {
+  box-shadow: 2px 2px 4px 0;
+}
+
+.comments-form textarea {
+  width: 400px;
+  border: 2px solid #000;
+  outline: none;
+  padding: 5px;
+}
+
 footer {
   width: calc(100% - 24px);
   border: 2px solid #000;
