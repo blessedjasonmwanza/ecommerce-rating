@@ -131,6 +131,10 @@ body {
   color: #47525d;
 }
 
+.comments {
+  flex-direction: column;
+}
+
 .comments-form {
   flex-direction: column;
   gap: 25px;
@@ -148,6 +152,7 @@ body {
 
 .comments-form button {
   box-shadow: 2px 2px 4px 0;
+  cursor: pointer;
 }
 
 .comments-form textarea {
