@@ -133,7 +133,7 @@ export default class CommentsPopUp {
               const { creation_date: date, comment: msg, username: user } = comment;
               results += `<p>${date} ${user}: ${msg}</p>`;
             });
-          } else if (data.error.status == 400) {
+          } else if (data.error.status === 400) {
             results = '<small><b>No comments have been added yet. Be the first to write a comment</b></small>';
           } else {
             results = `Error: ${data.error.message}`;
