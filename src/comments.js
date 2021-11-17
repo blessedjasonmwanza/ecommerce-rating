@@ -35,7 +35,28 @@ export default class CommentsPopUp {
                   ${description}
                 </em>
             </p>
+            <br>
+            <h3>Add comment</h3>
+            <form class="d-flex comments-form" method="post">
+              <input name="item_id" type="hidden" value="${id}">
+              <input name="name" type="text" placeholder="Your name">
+              <textarea name="comment" placeholder="Your insights" rows="10" cols="20"></textarea>
+              <button type="submit">Comment</button>
+            </form>
           `;
+          const commentsForm = this.popUp.querySelector('.comments-form');
+          commentsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const itemId = commentsForm.elements.item_id.value;
+            const name = commentsForm.elements.name.value;
+            const comment = commentsForm.elements.comment.value;
+            this.add(itemId, name, comment).then((res) => {
+              console.log(res);
+              if (res.error === false) {
+                commentsForm.reset();
+              }
+            });
+          });
           document.querySelector('body').appendChild(this.popUp);
           const closeBtn = document.querySelector('.close-comment-popup');
           closeBtn.addEventListener('click', () => this.hide());
@@ -66,7 +87,9 @@ export default class CommentsPopUp {
   add = async (itemId, username, comment) => {
     let response;
     if (itemId && username && comment) {
-      response = await fetch((config.commentsEndPoint, {
+      const url = config.commentsEndPoint;
+      console.log(url);
+      response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,9 +99,11 @@ export default class CommentsPopUp {
           username,
           comment,
         }),
-      }))
-        .then((res) => res.json())
-        .then((data) => ({ error: false, info: data }))
+      })
+        .then((res) => res.text())
+        .then((data) => (data.error
+          ? { error: true, info: data }
+          : { error: false, info: data }))
         .catch((error) => ({ error: true, info: error }));
     } else {
       response = { error: true, info: 'Some parameters are missing, or are invalid' };
