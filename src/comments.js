@@ -45,9 +45,9 @@ export default class CommentsPopUp {
             <br>
             <h3>Add comment</h3>
             <form class="d-flex comments-form" method="post">
-              <input name="item_id" type="hidden" value="${id}">
-              <input name="name" type="text" placeholder="Your name">
-              <textarea name="comment" placeholder="Your insights" rows="10" cols="20"></textarea>
+              <input name="item_id" type="hidden" value="${id}" required>
+              <input name="name" type="text" placeholder="Your name"  required>
+              <textarea name="comment" placeholder="Your insights" rows="10" cols="20"  required></textarea>
               <button type="submit">Comment</button>
             </form>
           `;
