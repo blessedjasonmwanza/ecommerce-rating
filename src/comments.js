@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import closeIcon from './img/close_icon.png';
 import Config from './config';
 
