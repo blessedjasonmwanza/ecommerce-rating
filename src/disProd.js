@@ -122,5 +122,7 @@ const display = async () => {
   } catch (err) {
     console.log(err);
   }
+
+  return 3;
 };
 export default display;

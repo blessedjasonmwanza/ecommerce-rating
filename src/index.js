@@ -6,7 +6,8 @@ import productCounter from './productCounter';
 getProducts();
 const dis = async () => {
   await display();
-  productCounter();
+  const docDisplayed = productCounter();
+  return docDisplayed;
 };
 
 dis();
