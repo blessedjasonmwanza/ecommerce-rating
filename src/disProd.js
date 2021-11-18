@@ -1,5 +1,9 @@
+import axios from 'axios';
 import getProducts from './getProducts';
 import CommentsPopUp from './comments';
+import Config from './config';
+
+const endPoints = new Config();
 
 const comments = new CommentsPopUp();
 
@@ -32,7 +36,7 @@ const createElement = (el, className, source, title, id) => {
   return elm;
 };
 
-const templateProduct = (source, title, id) => {
+const templateProduct = (source, title, id, data) => {
   const productCard = createElement('div', 'card-product');
   const productWrapper = createElement('div', 'card-wrapper');
   const containerInfo = createElement('div', 'cont-info');
@@ -42,7 +46,50 @@ const templateProduct = (source, title, id) => {
   const titleProduct = createElement('h5', 'title-product', null, title);
   const likes = createElement('a', 'liked-cont');
   const icon = createElement('i', 'far fa-heart', null, null, id);
-  const infoLikes = createElement('span', 'likes-counter');
+  icon.addEventListener('click', async () => {
+    let resg;
+    const body = { item_id: id };
+    try {
+      await axios.post(endPoints.likesEndPoint, body);
+      const reqg = await axios.get(endPoints.likesEndPoint);
+
+      resg = reqg;
+    } catch (err) {
+      console.log(err);
+    }
+    let likesDis;
+    let likes;
+    if (resg.data.length > 0) {
+      likes = resg.data.filter((el) => el.item_id === id);
+    }
+    if (likes[0].likes > 1) {
+      likesDis = `${likes[0].likes} likes`;
+    } else {
+      likesDis = `${likes[0].likes} like`;
+    }
+    icon.nextSibling.textContent = likesDis;
+  });
+  let likesDis;
+  if (data) {
+    const ikes = data.filter((el) => el.item_id === id);
+    console.log(ikes);
+
+    if (ikes.length > 0 && ikes[0].likes > 1) {
+      likesDis = `${ikes[0].likes} likes`;
+    }
+    if (ikes.length > 0 && ikes[0].likes <= 1) {
+      likesDis = `${ikes[0].likes} like`;
+    }
+    if (ikes.length === 0) {
+      likesDis = '0 like';
+    }
+  } else {
+    likesDis = '0 like';
+  }
+
+  const infoLikes = createElement('span', 'likes-counter', null, null, id);
+  infoLikes.textContent = likesDis;
+
   const btnWrapper = createElement('div', ' btn-wrapper');
   const btnComments = createElement('button', 'btn-comment', null, null, id);
 
@@ -67,12 +114,17 @@ const templateProduct = (source, title, id) => {
 const list = document.querySelector('.main');
 
 const display = async () => {
-  await getProducts().then((res) => {
-    res.forEach((el) => {
-      list.appendChild(templateProduct(el.image, el.title, el.id));
+  try {
+    const products = await getProducts();
+    const req = await axios.get(endPoints.likesEndPoint);
+    products.forEach((el) => {
+      list.appendChild(templateProduct(el.image, el.title, el.id, req.data));
     });
+
     comments.enable();
-  });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default display;
