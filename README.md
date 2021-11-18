@@ -5,9 +5,9 @@
 > e-commerce  web application built with; [involvement API](https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270), [Dummy products API](https://dummyproducts-api.herokuapp.com/#endpoints), Jests, WebPacks, JavaScript, es6 modules, Babel, HTML & CSS.
 
 # Preview 
- <!-- > 👀 Here is a sneak peak of how the project looks -->
-> coming soon
-<!-- ![ecommerce-rating Preview](./ecommerce-rating.png) -->
+ > 👀 Here is a sneak peak of how the project looks
+
+![ecommerce-rating Preview](./ecommerce-rating.png)
 ## Built With
 
 - HTML
@@ -18,8 +18,7 @@
 <hr>
 
 ## Live Demo
-> coming soon
-<!-- ### Check it out and start using it right now 😍 [Click here to view Live demo](https://blessedjasonmwanza.github.io/ecommerce-rating/). -->
+### Check it out and start using it right now 😍 [Click here to view Live demo](https://blessedjasonmwanza.github.io/ecommerce-rating/).
 
 <hr>
 
