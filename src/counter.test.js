@@ -1,5 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
 import productCounter from './productCounter.js';
 
+jest.setTimeout(10000);
 describe('product counter', () => {
   test('Fetched documents equal to displayed document', () => {
     const card = document.createElement('div');
