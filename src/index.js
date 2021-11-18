@@ -10,3 +10,5 @@ const dis = async () => {
 };
 
 dis();
+
+export default dis;

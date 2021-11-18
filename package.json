@@ -76,7 +76,6 @@
     "cacheable-request": "^7.0.2",
     "camelcase": "^6.2.0",
     "caniuse-lite": "^1.0.30001279",
-    "canvas": "^2.8.0",
     "caseless": "^0.12.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
@@ -478,7 +477,7 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --env=jsdom",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack",

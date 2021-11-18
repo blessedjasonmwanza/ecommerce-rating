@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable prefer-const */
 import axios from 'axios';
 import getProducts from './getProducts';
 import CommentsPopUp from './comments';
 import Config from './config';
-import productCounter from './productCounter';
 
 const endPoints = new Config();
 
