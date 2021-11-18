@@ -480,7 +480,7 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "jest --env=jsdom",
+    "test": "jest --watchAll --env=jsdom",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack",
