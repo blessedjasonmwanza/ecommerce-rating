@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import closeIcon from './img/close_icon.png';
 import Config from './config';
 
@@ -36,14 +37,22 @@ export default class CommentsPopUp {
                 </em>
             </p>
             <br>
+            <section>
+              <h3>Comments (<spam class="comments-count" title="total Comments">0</spam>)</h3>
+              <div class="comments d-flex">
+              <small>fetching comments...</small>
+              </div>
+            </section>
+            <br>
             <h3>Add comment</h3>
             <form class="d-flex comments-form" method="post">
-              <input name="item_id" type="hidden" value="${id}">
-              <input name="name" type="text" placeholder="Your name">
-              <textarea name="comment" placeholder="Your insights" rows="10" cols="20"></textarea>
+              <input name="item_id" type="hidden" value="${id}" required>
+              <input name="name" type="text" placeholder="Your name"  required>
+              <textarea name="comment" placeholder="Your insights" rows="10" cols="20"  required></textarea>
               <button type="submit">Comment</button>
             </form>
           `;
+          this.displayComments(id);
           const commentsForm = this.popUp.querySelector('.comments-form');
           commentsForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -51,9 +60,9 @@ export default class CommentsPopUp {
             const name = commentsForm.elements.name.value;
             const comment = commentsForm.elements.comment.value;
             this.add(itemId, name, comment).then((res) => {
-              console.log(res);
               if (res.error === false) {
                 commentsForm.reset();
+                this.displayComments(itemId);
               }
             });
           });
@@ -88,7 +97,6 @@ export default class CommentsPopUp {
     let response;
     if (itemId && username && comment) {
       const url = config.commentsEndPoint;
-      console.log(url);
       response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -108,6 +116,51 @@ export default class CommentsPopUp {
     } else {
       response = { error: true, info: 'Some parameters are missing, or are invalid' };
     }
+    return response;
+  }
+
+  getComments = async (id) => {
+    let response = '';
+    if (id) {
+      response = await fetch(`${config.commentsEndPoint}?item_id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          let results = '';
+          if (!data.error) {
+            this.totalComments(id).then((total) => {
+              this.popUp.querySelector('.comments-count').innerHTML = total;
+            });
+            data.forEach((comment) => {
+              const { creation_date: date, comment: msg, username: user } = comment;
+              results += `<p>${date} ${user}: ${msg}</p>`;
+            });
+          } else if (data.error.status === 400) {
+            results = '<small><b>No comments have been added yet. Be the first to write a comment</b></small>';
+          } else {
+            results = `Error: ${data.error.message}`;
+          }
+          return results;
+        })
+        .catch(() => 'Error: Comments could not be fetched.');
+    }
+    return response;
+  }
+
+  displayComments(itemId) {
+    const commentsSection = this.popUp.querySelector('.comments');
+    if (commentsSection) {
+      commentsSection.innerHTML = 'Updating comments...';
+      this.getComments(itemId).then((res) => {
+        commentsSection.innerHTML = res;
+      });
+    }
+  }
+
+  totalComments = async (id) => {
+    const response = await fetch(`${config.commentsEndPoint}?item_id=${id}`)
+      .then((res) => res.json())
+      .then((data) => (data.error ? 0 : data.length))
+      .then((error) => error);
     return response;
   }
 
