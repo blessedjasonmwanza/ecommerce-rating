@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-const */
 import axios from 'axios';
 import getProducts from './getProducts';
 import CommentsPopUp from './comments';
 import Config from './config';
+import productCounter from './productCounter';
 
 const endPoints = new Config();
 
@@ -72,8 +75,6 @@ const templateProduct = (source, title, id, data) => {
   let likesDis;
   if (data) {
     const ikes = data.filter((el) => el.item_id === id);
-    console.log(ikes);
-
     if (ikes.length > 0 && ikes[0].likes > 1) {
       likesDis = `${ikes[0].likes} likes`;
     }
@@ -118,13 +119,11 @@ const display = async () => {
     const products = await getProducts();
     const req = await axios.get(endPoints.likesEndPoint);
     products.forEach((el) => {
-      list.appendChild(templateProduct(el.image, el.title, el.id, req.data));
+      list.append(templateProduct(el.image, el.title, el.id, req.data));
     });
-
     comments.enable();
   } catch (err) {
     console.log(err);
   }
 };
-
 export default display;
