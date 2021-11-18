@@ -4,3 +4,5 @@ test.html
 .vscode
 .vscode/
 .prettierrc
+
+package-lock.json
