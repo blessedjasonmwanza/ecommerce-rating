@@ -49,14 +49,10 @@ const templateProduct = (source, title, id, data) => {
   icon.addEventListener('click', async () => {
     let resg;
     const body = { item_id: id };
-    try {
-      await axios.post(endPoints.likesEndPoint, body);
-      const reqg = await axios.get(endPoints.likesEndPoint);
+    await axios.post(endPoints.likesEndPoint, body);
+    const reqg = await axios.get(endPoints.likesEndPoint);
 
-      resg = reqg;
-    } catch (err) {
-      console.log(err);
-    }
+    resg = reqg;
     let likesDis;
     let likes;
     if (resg.data.length > 0) {
@@ -112,17 +108,12 @@ const templateProduct = (source, title, id, data) => {
 const list = document.querySelector('.main');
 
 const display = async () => {
-  try {
-    const products = await getProducts();
-    const req = await axios.get(endPoints.likesEndPoint);
-    products.forEach((el) => {
-      list.append(templateProduct(el.image, el.title, el.id, req.data));
-    });
-    comments.enable();
-  } catch (err) {
-    console.log(err);
-  }
-
+  const products = await getProducts();
+  const req = await axios.get(endPoints.likesEndPoint);
+  products.forEach((el) => {
+    list.append(templateProduct(el.image, el.title, el.id, req.data));
+  });
+  comments.enable();
   return 3;
 };
 export default display;
