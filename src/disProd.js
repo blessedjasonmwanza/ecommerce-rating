@@ -47,12 +47,11 @@ const templateProduct = (source, title, id, data) => {
   const likes = createElement('a', 'liked-cont');
   const icon = createElement('i', 'far fa-heart', null, null, id);
   icon.addEventListener('click', async () => {
-    let resg;
     const body = { item_id: id };
     await axios.post(endPoints.likesEndPoint, body);
     const reqg = await axios.get(endPoints.likesEndPoint);
 
-    resg = reqg;
+    const resg = reqg;
     let likesDis;
     let likes;
     if (resg.data.length > 0) {
