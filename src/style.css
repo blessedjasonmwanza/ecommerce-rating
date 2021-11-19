@@ -1,0 +1,183 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.cont-navbar {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+
+.cont-link {
+  margin-left: 2rem;
+}
+
+.cont-link-lists {
+  display: flex;
+  list-style: none;
+}
+
+.cont-link-lists > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.link:active,
+.link:hover {
+  border-bottom: 2px solid currentColor;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+}
+
+.cont-img {
+  width: 100%;
+  text-align: center;
+}
+
+.img-product {
+  height: 10rem;
+  margin: 0 auto;
+}
+
+.cont-info-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.title-product {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-wrapper > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+#commentsPopUp {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: #fff;
+  align-items: center;
+  overflow-y: auto;
+}
+
+#commentsPopUp .close-comment-popup {
+  margin: 30px 30px 0 0;
+  align-self: flex-end;
+  height: 30px;
+  cursor: pointer;
+  font-family: sans-serif, Helvetica, Arial, Verdana, Tahoma;
+}
+
+#commentsPopUp .comment-cover {
+  max-width: 400px;
+  max-height: 300px;
+}
+
+#commentsPopUp ul {
+  list-style-type: none;
+  gap: 50px;
+  padding: 0;
+  margin: 0;
+  flex-flow: row wrap;
+  color: #47525d;
+}
+
+#commentsPopUp ul li b {
+  color: #333;
+}
+
+#commentsPopUp em {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  font-style: normal;
+  line-height: 25px;
+  color: #47525d;
+}
+
+.comments {
+  flex-direction: column;
+}
+
+.comments-form {
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.comments-form input,
+.comments-form button {
+  width: 300px;
+  border: 2px solid #000;
+  height: 35px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.comments-form button {
+  box-shadow: 2px 2px 4px 0;
+  cursor: pointer;
+}
+
+.comments-form textarea {
+  width: 400px;
+  border: 2px solid #000;
+  outline: none;
+  padding: 5px;
+}
+
+footer {
+  width: calc(100% - 24px);
+  border: 2px solid #000;
+  padding: 30px 10px;
+  margin: 0 auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.btn-comment,
+.btn-reserve {
+  border: none;
+  background-color: steelblue;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+}
